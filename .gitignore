@@ -1,22 +1,39 @@
-.DS_Store
+# Dependencies
 node_modules/
+.pnpm-store/
+
+# Build output
 dist/
+build/
+coverage/
+*.tsbuildinfo
+
+# Logs
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-**/*.log
+pnpm-debug.log*
 
+# Environment files
+.env
+.env.*
+!.env.example
 
+# Local databases
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+dev.db*
 
-# Editor directories and files
-.idea
-.vscode
-.vscode
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.local
+# Tool caches
+.cache/
+.vite/
+.turbo/
+.eslintcache
 
-package-lock.json
-yarn.lock
+# Editors and OS files
+.DS_Store
+Thumbs.db
+.idea/

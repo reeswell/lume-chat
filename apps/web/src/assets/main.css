@@ -1,0 +1,333 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --vc-app-bg: #050505;
+  --vc-page-bg: #0f0f0f;
+  --vc-surface: #1c1c1e;
+  --vc-surface-soft: #1b1b1d;
+  --vc-field-bg: #101012;
+  --vc-hover: rgb(255 255 255 / 5%);
+  --vc-border: rgb(255 255 255 / 10%);
+  --vc-text: #ffffff;
+  --vc-text-muted: #a4a3a8;
+  --vc-text-soft: #d7d7dc;
+  --vc-accent: #3477f5;
+  --vc-accent-soft: #7ca8ff;
+  color: #ffffff;
+  background: #050505;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:root[data-theme="light"] {
+  --vc-app-bg: #e9edf3;
+  --vc-page-bg: #f6f7f9;
+  --vc-surface: #ffffff;
+  --vc-surface-soft: #fdfdfd;
+  --vc-field-bg: #eef1f5;
+  --vc-hover: rgb(15 23 42 / 6%);
+  --vc-border: rgb(15 23 42 / 10%);
+  --vc-text: #111827;
+  --vc-text-muted: #6b7280;
+  --vc-text-soft: #374151;
+  --vc-accent: #2563eb;
+  --vc-accent-soft: #1d4ed8;
+  color: var(--vc-text);
+  background: var(--vc-app-bg);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--vc-app-bg);
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.wechat-page-enter-active,
+.wechat-page-leave-active {
+  transition:
+    opacity 180ms ease,
+    transform 220ms cubic-bezier(.22, 1, .36, 1),
+    filter 220ms ease;
+}
+
+.wechat-page-enter-from {
+  opacity: 0;
+  filter: blur(2px);
+  transform: translateX(18px);
+}
+
+.wechat-page-leave-to {
+  opacity: 0;
+  filter: blur(1px);
+  transform: translateX(-10px);
+}
+
+.wechat-fade-enter-active,
+.wechat-fade-leave-active {
+  transition: opacity 160ms ease;
+}
+
+.wechat-fade-enter-from,
+.wechat-fade-leave-to {
+  opacity: 0;
+}
+
+.wechat-pop-enter-active {
+  transition:
+    opacity 160ms ease,
+    transform 180ms cubic-bezier(.18, .89, .32, 1.18);
+}
+
+.wechat-pop-leave-active {
+  transition:
+    opacity 120ms ease,
+    transform 120ms ease;
+}
+
+.wechat-pop-enter-from,
+.wechat-pop-leave-to {
+  opacity: 0;
+  transform: translateY(-8px) scale(.96);
+}
+
+.wechat-panel-enter-active,
+.wechat-panel-leave-active {
+  transition:
+    opacity 180ms ease,
+    transform 220ms cubic-bezier(.22, 1, .36, 1);
+}
+
+.wechat-panel-enter-from,
+.wechat-panel-leave-to {
+  opacity: 0;
+  transform: translateY(18px);
+}
+
+.wechat-list-enter-active,
+.wechat-list-leave-active {
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+.wechat-list-enter-from,
+.wechat-list-leave-to {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.wechat-badge-enter-active {
+  animation: wechat-badge-pop 260ms cubic-bezier(.18, .89, .32, 1.28);
+}
+
+.wechat-badge-leave-active {
+  transition:
+    opacity 120ms ease,
+    transform 120ms ease;
+}
+
+.wechat-badge-leave-to {
+  opacity: 0;
+  transform: scale(.72);
+}
+
+.wechat-message {
+  animation: wechat-message-in 220ms cubic-bezier(.18, .89, .32, 1.12);
+  transform-origin: var(--message-origin, left bottom);
+  will-change: transform, opacity;
+}
+
+.wechat-message--mine {
+  --message-origin: right bottom;
+}
+
+.wechat-bubble-incoming {
+  background-color: #1f1f21;
+  color: #ffffff;
+}
+
+.wechat-bubble-outgoing {
+  background-color: #3477f5;
+  color: #ffffff;
+}
+
+:root[data-theme="light"] .wechat-bubble-incoming {
+  background-color: var(--vc-surface);
+  color: var(--vc-text);
+  border: 1px solid var(--vc-border);
+  box-shadow: 0 1px 2px rgb(15 23 42 / 6%);
+}
+
+:root[data-theme="light"] .wechat-bubble-outgoing {
+  background-color: var(--vc-accent);
+  color: #ffffff;
+}
+
+.wechat-pressable {
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease,
+    transform 160ms cubic-bezier(.22, 1, .36, 1);
+}
+
+.wechat-pressable:active {
+  transform: scale(.985);
+}
+
+.wechat-icon-button {
+  transition:
+    background-color 160ms ease,
+    color 160ms ease,
+    transform 160ms cubic-bezier(.22, 1, .36, 1);
+}
+
+.wechat-icon-button:active {
+  transform: scale(.9);
+}
+
+.wechat-online-dot::after {
+  position: absolute;
+  inset: -3px;
+  border: 1px solid rgb(16 185 129 / 45%);
+  border-radius: inherit;
+  animation: wechat-online-pulse 1.9s ease-out infinite;
+  content: "";
+}
+
+.wechat-scroll {
+  scroll-behavior: smooth;
+}
+
+:root[data-theme="light"] .bg-\[\#050505\] {
+  background-color: var(--vc-app-bg);
+}
+
+:root[data-theme="light"] .bg-\[\#0f0f0f\],
+:root[data-theme="light"] .bg-\[\#151515\] {
+  background-color: var(--vc-page-bg);
+}
+
+:root[data-theme="light"] .bg-\[\#1c1c1e\],
+:root[data-theme="light"] .bg-\[\#1b1b1d\],
+:root[data-theme="light"] .bg-\[\#141416\] {
+  background-color: var(--vc-surface);
+}
+
+:root[data-theme="light"] .bg-\[\#101012\],
+:root[data-theme="light"] .bg-\[\#111114\],
+:root[data-theme="light"] .bg-\[\#151519\],
+:root[data-theme="light"] .bg-\[\#202024\],
+:root[data-theme="light"] .bg-\[\#242427\],
+:root[data-theme="light"] .bg-\[\#2a2a2d\],
+:root[data-theme="light"] .bg-\[\#2f2f33\],
+:root[data-theme="light"] .bg-\[\#4c4c4c\] {
+  background-color: var(--vc-field-bg);
+}
+
+:root[data-theme="light"] .text-white,
+:root[data-theme="light"] .text-white\/55,
+:root[data-theme="light"] .text-white\/60,
+:root[data-theme="light"] .text-white\/70 {
+  color: var(--vc-text);
+}
+
+:root[data-theme="light"] .text-\[\#a4a3a8\],
+:root[data-theme="light"] .text-\[\#8d8d93\],
+:root[data-theme="light"] .text-\[\#85858a\],
+:root[data-theme="light"] .text-\[\#8c8c92\],
+:root[data-theme="light"] .text-\[\#7d7d83\],
+:root[data-theme="light"] .text-\[\#b2b2b8\],
+:root[data-theme="light"] .text-\[\#b7b7bc\],
+:root[data-theme="light"] .text-\[\#c8c8ce\],
+:root[data-theme="light"] .text-\[\#d7d7dc\] {
+  color: var(--vc-text-muted);
+}
+
+:root[data-theme="light"] .border-white\/10 {
+  border-color: var(--vc-border);
+}
+
+:root[data-theme="light"] .bg-white\/5,
+:root[data-theme="light"] .bg-white\/10 {
+  background-color: var(--vc-hover);
+}
+
+:root[data-theme="light"] .bg-\[\#3477f5\],
+:root[data-theme="light"] .bg-\[\#3477f5\].text-white,
+:root[data-theme="light"] .bg-\[\#2563eb\],
+:root[data-theme="light"] .bg-emerald-500 {
+  color: #ffffff;
+}
+
+@keyframes wechat-message-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes wechat-badge-pop {
+  0% {
+    opacity: 0;
+    transform: scale(.45);
+  }
+
+  70% {
+    opacity: 1;
+    transform: scale(1.12);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes wechat-online-pulse {
+  from {
+    opacity: .75;
+    transform: scale(.75);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(1.9);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}

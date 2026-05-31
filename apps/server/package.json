@@ -1,0 +1,41 @@
+{
+  "name": "@lume-chat/server",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "nest start --watch",
+    "build": "nest build",
+    "start": "node dist/src/main.js",
+    "prisma:generate": "node --env-file=../../.env node_modules/prisma/build/index.js generate",
+    "prisma:migrate": "node --env-file=../../.env node_modules/prisma/build/index.js migrate dev --name init",
+    "prisma:seed": "node --env-file=../../.env node_modules/ts-node/dist/bin.js prisma/seed.ts"
+  },
+  "dependencies": {
+    "@lume-chat/shared-types": "workspace:*",
+    "@nestjs/common": "catalog:",
+    "@nestjs/config": "catalog:",
+    "@nestjs/core": "catalog:",
+    "@nestjs/jwt": "catalog:",
+    "@nestjs/platform-express": "catalog:",
+    "@nestjs/platform-socket.io": "catalog:",
+    "@nestjs/websockets": "catalog:",
+    "@prisma/client": "catalog:",
+    "bcryptjs": "catalog:",
+    "class-transformer": "catalog:",
+    "class-validator": "catalog:",
+    "ioredis": "catalog:",
+    "reflect-metadata": "catalog:",
+    "rxjs": "catalog:",
+    "socket.io": "catalog:"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "catalog:",
+    "@prisma/engines": "catalog:",
+    "@types/express": "catalog:",
+    "@types/node": "catalog:",
+    "prisma": "catalog:",
+    "ts-node": "catalog:",
+    "tsconfig-paths": "catalog:",
+    "typescript": "catalog:"
+  }
+}

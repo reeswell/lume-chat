@@ -1,71 +1,75 @@
-# Vue Chat
+# LumeChat
 
-项目完成于2020年未，已经不再维护！
+现代化的全栈聊天示例项目，包含账号登录注册、好友、群聊、会话列表、消息历史和 Socket.IO 实时通信。
 
-## 项目启动
+## 技术栈
 
-启动环境：node、mongodb
+- Backend: NestJS + Prisma + PostgreSQL + Redis + TypeScript
+- Frontend: Vue 3 + TypeScript + Pinia + Tailwind CSS
+- Realtime: Socket.IO gateway on NestJS
 
-```bash
-git clone https://github.com/xxydrr/vue-koa-chat 
+## 目录
 
-cd backend
-npm install //安装后端依赖
-mongod  //启动数据库
-npm run init  //初始化一个系统账号
-npm run dev   //启动服务器
-cd ../
-cd frontend   
-npm run serve 
+```text
+apps/server              NestJS API、Prisma schema、Socket 网关
+apps/web                 Vite Vue 3 前端
+packages/shared-types    前后端共享的 API TypeScript 类型
+tsconfig.base.json       各包共用的 TypeScript 基座配置
 ```
 
-## 实现功能
+前端仍可通过 `@/services/types` 引用类型（内部转发自 `@lume-chat/shared-types`）。后端可直接：
 
-- 登录/注册/登出
-- 消息类型（文本/表情/图片/文件）
-- 好友（添加/删除/修改备注/模糊搜索好友）
-- 群组（普通群/广播群）/创建群/加入群/退群/模糊搜索添加的群
-- 未读消息统计/标为已读
-- 分组（未读/群组会话分组）
-- 添加好友/加群校验
-- 设置修改个人信息（密码/头像/年龄/手机号码/性别/邮箱/城市/昵称）
-- 查看好友/群组信息
-- 持续完善...
+```ts
+import type { User } from '@lume-chat/shared-types'
+```
 
-## 项目截图
+## 环境要求
 
-[![img](https://camo.githubusercontent.com/3342c0573ddaa3bf466e29415ee025c30adab987f6f3d589ef436324e8390803/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7878796472722f6d795f7069632f696d672f32303231303530353133343630312e706e67)](https://camo.githubusercontent.com/3342c0573ddaa3bf466e29415ee025c30adab987f6f3d589ef436324e8390803/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7878796472722f6d795f7069632f696d672f32303231303530353133343630312e706e67)[![img](https://camo.githubusercontent.com/77a92d724b7fc41d7cb0efb0c0bab5be537e19f63b3c93296dbde2731eb8549e/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7878796472722f6d795f7069632f696d672f32303231303530353133343631352e706e67)](https://camo.githubusercontent.com/77a92d724b7fc41d7cb0efb0c0bab5be537e19f63b3c93296dbde2731eb8549e/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7878796472722f6d795f7069632f696d672f32303231303530353133343631352e706e67)
+- Node.js 22+
+- pnpm 10.12+
+- Docker / Docker Compose
 
-[![img](https://camo.githubusercontent.com/a34e640fc4264d324f30394e059717601fa2ff1b22f1f781d7f42731a3b4b586/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7878796472722f6d795f7069632f696d672f32303231303530353133343630332e706e67)](https://camo.githubusercontent.com/a34e640fc4264d324f30394e059717601fa2ff1b22f1f781d7f42731a3b4b586/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7878796472722f6d795f7069632f696d672f32303231303530353133343630332e706e67)[![img](https://camo.githubusercontent.com/e8a2a0b91eb47b9e87ba75091ed7dbd00efb9ea670abffe1b41389054bd1aae6/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7878796472722f6d795f7069632f696d672f32303231303530353133343630322e706e67)](https://camo.githubusercontent.com/e8a2a0b91eb47b9e87ba75091ed7dbd00efb9ea670abffe1b41389054bd1aae6/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7878796472722f6d795f7069632f696d672f32303231303530353133343630322e706e67)
+## 启动
 
-[![img](https://camo.githubusercontent.com/4195eb1410798b0612daec35de73befc3015d4529a097844562dcef71f58fd67/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7878796472722f6d795f7069632f696d672f32303231303530353133343631372e706e67)](https://camo.githubusercontent.com/4195eb1410798b0612daec35de73befc3015d4529a097844562dcef71f58fd67/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7878796472722f6d795f7069632f696d672f32303231303530353133343631372e706e67)[![img](https://camo.githubusercontent.com/c614a937581f9e8898395e335a83835a58018c254ffa087c58659cca578e36b2/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7878796472722f6d795f7069632f696d672f32303231303530353133343630342e706e67)](https://camo.githubusercontent.com/c614a937581f9e8898395e335a83835a58018c254ffa087c58659cca578e36b2/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7878796472722f6d795f7069632f696d672f32303231303530353133343630342e706e67)
+```bash
+pnpm install
+cp .env.example .env
+docker compose up -d postgres redis
+pnpm db:generate
+pnpm db:migrate
+pnpm db:seed
+pnpm dev
+```
 
-## 项目功能扩展想法
+默认服务：
 
-- 主题皮肤设置
-- better scroll + 分页查询
-- 我的页面加入游戏功能
-- 我的页面加入stories功能
-- 视频语音webRTC（暂时没有思路）
+- API: http://localhost:3000/api
+- Web: http://localhost:5173
+- PostgreSQL: localhost:5432
+- Redis: localhost:6379
 
-## 说明
+种子账号：
 
-======= 欢迎有对项目有扩展想法的伙伴能参与到这个项目来❤️❤️❤️
+- `alice` / `123456`
+- `bob` / `123456`
 
-如果项目对您有帮助，希望您能 "Star" 支持一下 感谢！🌹🌹🌹🌹🌹🌹
+## 数据库
 
-我的vue2 + vuex 聊天系统入门项目。[地址](https://github.com/xxydrr/vue-telegram)
+Prisma 当前只保留一份 PostgreSQL 初始迁移：
 
-该项目代码不再维护，欢迎关注我的新项目[story](https://github.com/xxydrr/story)
+```text
+apps/server/prisma/migrations/20260531000000_init
+```
 
-## 参考资料
 
-- [MongoDB](https://docs.mongodb.com/manual/reference/)
-- [Mongoose](https://mongoosejs.com/docs/guide.html)
-- [vue-telegram](https://github.com/xxydrr/vue-telegram)
-- [socket.io](https://www.w3cschool.cn/socket/socket-buvk2eib.html)
-- [Vchat](https://github.com/wuyawei/Vchat)
 
-## License
+## 功能
 
-[MIT](https://github.com/xxydrr/vue-koa-vue/blob/main/LICENSE)
+- 登录、注册、JWT 鉴权
+- 用户资料读取与更新
+- 好友列表、用户搜索、好友申请/同意、删除好友
+- 群创建、群搜索、加入、退出、成员列表
+- 会话列表、消息历史、已读标记
+- Socket.IO 实时收发消息、在线状态广播
+- Redis 保存在线用户状态
+- 主题切换

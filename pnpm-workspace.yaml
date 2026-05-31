@@ -1,0 +1,57 @@
+shellEmulator: true
+
+trustPolicy: no-downgrade
+
+pnpm:
+  onlyBuiltDependencies:
+    - '@nestjs/core'
+    - '@prisma/client'
+    - '@prisma/engines'
+    - esbuild
+    - prisma
+
+packages:
+  - apps/*
+  - packages/*
+catalog:
+  '@antfu/eslint-config': ^9.0.0
+  '@nestjs/cli': ^11.0.7
+  '@nestjs/common': ^11.1.0
+  '@nestjs/config': ^4.0.2
+  '@nestjs/core': ^11.1.0
+  '@nestjs/jwt': ^11.0.0
+  '@nestjs/platform-express': ^11.1.0
+  '@nestjs/platform-socket.io': ^11.1.0
+  '@nestjs/websockets': ^11.1.0
+  '@prisma/client': ^6.19.3
+  '@prisma/engines': ^6.19.3
+  '@types/express': ^5.0.2
+  '@types/node': ^22.15.19
+  '@vitejs/plugin-vue': ^4.6.2
+  '@vueuse/core': ^14.3.0
+  '@vueuse/integrations': ^14.3.0
+  autoprefixer: ^10.4.21
+  axios: ^1.9.0
+  bcryptjs: ^3.0.2
+  class-transformer: ^0.5.1
+  class-validator: ^0.14.2
+  eslint: ^10.4.0
+  ioredis: ^5.6.1
+  lucide-vue-next: ^0.511.0
+  pinia: ^3.0.2
+  postcss: ^8.5.3
+  prisma: ^6.19.3
+  reflect-metadata: ^0.2.2
+  rxjs: ^7.8.2
+  socket.io: ^4.8.1
+  socket.io-client: ^4.8.1
+  tailwindcss: ^3.4.17
+  ts-node: ^10.9.2
+  tsconfig-paths: ^4.2.0
+  typescript: ^5.8.3
+  universal-cookie: ^8.1.2
+  vite: ^4.5.14
+  vue: ^3.5.14
+  vue-router: ^4.5.1
+  vue-tsc: ^2.2.10
+  vue-virtual-scroller: ^3.0.4

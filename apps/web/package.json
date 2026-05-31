@@ -1,0 +1,33 @@
+{
+  "name": "@lume-chat/web",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@lume-chat/shared-types": "workspace:*",
+    "@vueuse/core": "catalog:",
+    "@vueuse/integrations": "catalog:",
+    "axios": "catalog:",
+    "lucide-vue-next": "catalog:",
+    "pinia": "catalog:",
+    "socket.io-client": "catalog:",
+    "universal-cookie": "catalog:",
+    "vue": "catalog:",
+    "vue-router": "catalog:",
+    "vue-virtual-scroller": "catalog:"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "catalog:",
+    "autoprefixer": "catalog:",
+    "postcss": "catalog:",
+    "tailwindcss": "catalog:",
+    "typescript": "catalog:",
+    "vite": "catalog:",
+    "vue-tsc": "catalog:"
+  }
+}

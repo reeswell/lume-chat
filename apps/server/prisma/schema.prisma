@@ -1,0 +1,129 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              String        @id @default(cuid())
+  userName        String        @unique
+  passwordHash    String
+  mobilePhone     String?       @unique
+  avatar          String        @default("")
+  signature       String        @default("这个人很懒，暂时没有签名哦！")
+  nickname        String
+  email           String        @default("")
+  province        String        @default("广东省")
+  city            String        @default("广州市")
+  gender          String        @default("secret")
+  age             Int           @default(18)
+  signUpTime      DateTime      @default(now())
+  lastLoginTime   DateTime      @default(now())
+  conversations   Conversation[]
+  messages        Message[]
+  ownedGroups     ChatGroup[]   @relation("GroupOwner")
+  memberships     GroupMember[]
+  sentFriends     Friend[]      @relation("FriendSelf")
+  receivedFriends Friend[]      @relation("FriendOther")
+}
+
+model Conversation {
+  id            String   @id @default(cuid())
+  ownerId       String
+  roomId        String
+  title         String
+  avatar        String
+  type          String
+  friendId      String?
+  groupId       String?
+  lastMessage   String  @default("")
+  lastMessageAt DateTime?
+  unread        Int     @default(0)
+  pinned        Boolean @default(false)
+  removedAt     DateTime?
+  owner         User    @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+
+  @@unique([ownerId, roomId])
+  @@index([roomId])
+}
+
+model ChatGroup {
+  id           String        @id @default(cuid())
+  groupCode    String        @unique
+  title        String
+  desc         String        @default("")
+  img          String        @default("/img/group.svg")
+  userNum      Int           @default(1)
+  type         String        @default("group")
+  grades       String        @default("1")
+  joinApproval Boolean       @default(false)
+  holderId     String
+  holderName   String
+  createDate   DateTime      @default(now())
+  holder       User          @relation("GroupOwner", fields: [holderId], references: [id], onDelete: Cascade)
+  members      GroupMember[]
+
+  @@index([title])
+}
+
+model GroupMember {
+  id       String    @id @default(cuid())
+  groupId  String
+  userId   String
+  userName String
+  manager  Boolean   @default(false)
+  holder   Boolean   @default(false)
+  card     String?
+  group    ChatGroup @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([groupId, userId])
+}
+
+model Friend {
+  id         String   @id @default(cuid())
+  selfId     String
+  otherId    String
+  roomId     String
+  createDate DateTime @default(now())
+  self       User     @relation("FriendSelf", fields: [selfId], references: [id], onDelete: Cascade)
+  other      User     @relation("FriendOther", fields: [otherId], references: [id], onDelete: Cascade)
+
+  @@unique([selfId, otherId])
+  @@index([roomId])
+}
+
+model Message {
+  id             String        @id @default(cuid())
+  roomId         String
+  senderId       String?
+  userName       String        @default("")
+  nickname       String        @default("")
+  avatar         String        @default("")
+  content        String        @default("")
+  style          String        @default("mess")
+  type           String        @default("message")
+  state          String?
+  status         String?
+  targetUserId   String?
+  targetGroupId  String?
+  friendRoom     String?
+  createdAt      DateTime      @default(now())
+  sender         User?         @relation(fields: [senderId], references: [id], onDelete: SetNull)
+  reads          MessageRead[]
+
+  @@index([roomId, createdAt])
+}
+
+model MessageRead {
+  id        String   @id @default(cuid())
+  messageId String
+  userId    String
+  readAt    DateTime @default(now())
+  message   Message  @relation(fields: [messageId], references: [id], onDelete: Cascade)
+
+  @@unique([messageId, userId])
+}

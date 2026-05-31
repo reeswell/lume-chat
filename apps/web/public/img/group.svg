@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Default group avatar">
+  <defs>
+    <linearGradient id="group-gradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8b5cf6" />
+      <stop offset="1" stop-color="#f97316" />
+    </linearGradient>
+  </defs>
+  <rect width="120" height="120" rx="24" fill="url(#group-gradient)" />
+  <circle cx="92" cy="24" r="28" fill="#ffffff" opacity=".14" />
+  <circle cx="24" cy="96" r="34" fill="#000000" opacity=".12" />
+  <path fill="#ffffff" d="M45 56c9.4 0 17-7.6 17-17s-7.6-17-17-17-17 7.6-17 17 7.6 17 17 17Zm31 4c8.3 0 15-6.7 15-15s-6.7-15-15-15-15 6.7-15 15 6.7 15 15 15ZM45 66c-17.1 0-30 8.7-30 20.2C15 91.6 19.4 96 24.8 96h40.4c5.4 0 9.8-4.4 9.8-9.8C75 74.7 62.1 66 45 66Zm31 3c-3.9 0-7.5.5-10.7 1.5 8.8 4 14.7 10.6 14.7 19.1 0 2.3-.5 4.5-1.4 6.4h16.6c5.4 0 9.8-4.4 9.8-9.8C105 76.4 92.6 69 76 69Z" opacity=".92" />
+</svg>

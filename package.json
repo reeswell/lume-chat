@@ -1,0 +1,22 @@
+{
+  "name": "lume-chat",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@10.12.1",
+  "scripts": {
+    "dev": "pnpm --parallel dev",
+    "dev:server": "pnpm --filter @lume-chat/server dev",
+    "dev:web": "pnpm --filter @lume-chat/web dev",
+    "build": "pnpm -r build",
+    "db:generate": "pnpm --filter @lume-chat/server prisma:generate",
+    "db:migrate": "pnpm --filter @lume-chat/server prisma:migrate",
+    "db:seed": "pnpm --filter @lume-chat/server prisma:seed",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "catalog:",
+    "eslint": "catalog:",
+    "typescript": "catalog:"
+  }
+}
